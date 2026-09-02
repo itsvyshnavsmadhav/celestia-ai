@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-surface-container-lowest w-full pt-4 pb-4 border-t border-outline/10">
       <div className="flex flex-col gap-3 px-6 md:px-section-padding-h max-w-container-max mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-2">
+        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center md:items-end gap-2">
           <Link href="/">
             <Image 
               src="/images/brand/footer-logo-transparent.png" 
