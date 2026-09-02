@@ -54,6 +54,14 @@ export default function Expertise() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const activeVideo = document.getElementById(`expertise-video-${activeIndex}`) as HTMLVideoElement | null;
+    if (activeVideo) {
+      activeVideo.currentTime = 0;
+      activeVideo.play().catch(() => {});
+    }
+  }, [activeIndex]);
+
   return (
     <section ref={sectionRef} className="min-h-[100dvh] py-12 md:py-16 bg-background relative z-10 flex flex-col justify-center">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
@@ -64,11 +72,11 @@ export default function Expertise() {
           </span>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center mt-6 md:mt-8">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center mt-6 md:mt-8">
           
           {/* Left: Square Video Placeholder */}
-          <div className="w-full lg:w-1/2 flex justify-center">
-            <div className="w-full max-w-[500px] lg:max-w-none aspect-video bg-surface-container-low rounded-[2rem] overflow-hidden relative shadow-md group">
+          <div className="w-full lg:w-[55%] flex justify-center">
+            <div className="w-full max-w-[600px] lg:max-w-none aspect-video bg-surface-container-low rounded-[2rem] overflow-hidden relative shadow-md group">
               {expertiseCards.map((card, index) => (
                 <motion.div 
                   key={index}
@@ -150,7 +158,7 @@ export default function Expertise() {
           </div>
 
           {/* Right: Description List */}
-          <div className="w-full lg:w-1/2 flex flex-col justify-center gap-3">
+          <div className="w-full lg:w-[45%] flex flex-col justify-center gap-3">
             {expertiseCards.map((card, index) => {
               const isActive = index === activeIndex;
               return (
