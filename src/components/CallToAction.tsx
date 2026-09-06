@@ -22,9 +22,9 @@ export default function CallToAction() {
           {/* Left Column */}
           <div className="flex flex-col items-start gap-8">
             <h2 className="font-hanken text-[32px] sm:text-[36px] md:text-[48px] lg:text-[56px] text-on-surface font-medium leading-[1.1] tracking-tight">
-              Ready to build AI<br />
-              that delivers<br />
-              business value?
+              Ready to see real<br />
+              business value<br />
+              from AI?
             </h2>
             
             <a 
@@ -42,7 +42,7 @@ export default function CallToAction() {
           {/* Right Column */}
           <div className="flex items-center">
             <p className="font-inter text-[16px] md:text-[18px] text-on-surface-variant leading-[1.8] font-light max-w-md">
-              Partnering up with ambitious organizations to solve real problems and create lasting impact with AI that actually works.
+              We help forward-thinking teams turn hard problems into measurable results.
             </p>
           </div>
 
