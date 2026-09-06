@@ -97,6 +97,7 @@ export default function Hero() {
              muted
              playsInline
              preload="auto"
+             poster="/hero-poster.jpg"
              className="absolute inset-0 w-full h-full object-cover object-center z-0"
              onTimeUpdate={(e) => {
                // We modulo 8 so it repeats every 8 seconds if the video is longer
