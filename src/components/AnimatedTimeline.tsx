@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import Image from "next/image";
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
@@ -151,8 +152,8 @@ export default function AnimatedTimeline() {
       <div className="block md:hidden relative w-full pt-12 pb-8">
         {/* Profile Head */}
         <div className="flex flex-col items-center mb-12">
-          <div className="w-[100px] h-[100px] rounded-full overflow-hidden border-4 border-surface shadow-lg">
-            <img src="/images/founders/IMANE AJEBLI.webp" alt="Imane Ajebli" className="w-full h-full object-cover" />
+          <div className="w-[100px] h-[100px] rounded-full overflow-hidden border-4 border-surface shadow-lg relative">
+            <Image src="/images/founders/IMANE AJEBLI.webp" alt="Imane Ajebli" fill className="object-cover" />
           </div>
           <h3 className="font-hanken text-[20px] tracking-tight font-medium text-on-surface uppercase mt-4">
             Imane Ajebli
@@ -169,8 +170,8 @@ export default function AnimatedTimeline() {
               {/* Dot */}
               <div className="absolute -left-[40px] top-4 w-3 h-3 rounded-full bg-on-surface border-2 border-surface shadow-sm"></div>
               
-              <div className="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-sm mb-4">
-                <img src={item.img} alt={`Milestone ${i+1}`} className="w-full h-full object-cover" />
+              <div className="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-sm mb-4 relative">
+                <Image src={item.img} alt={`Milestone ${i+1}`} fill className="object-cover" />
               </div>
               <div className="p-6 border border-outline/20 bg-surface shadow-sm rounded-xl">
                 <p className="font-inter text-[15px] leading-relaxed text-on-surface" dangerouslySetInnerHTML={{ __html: item.text }}></p>
@@ -190,8 +191,8 @@ export default function AnimatedTimeline() {
       <div className="hidden md:block relative w-full h-[2200px]">
         {/* Imane's Profile Picture */}
         <div className="absolute top-0 left-[240px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10">
-          <div className="w-[120px] h-[120px] rounded-full overflow-hidden border-4 border-surface shadow-lg">
-            <img src="/images/founders/IMANE AJEBLI.webp" alt="Imane Ajebli" className="w-full h-full object-cover" />
+          <div className="w-[120px] h-[120px] rounded-full overflow-hidden border-4 border-surface shadow-lg relative">
+            <Image src="/images/founders/IMANE AJEBLI.webp" alt="Imane Ajebli" fill className="object-cover" />
           </div>
           <h3 className="font-hanken text-[20px] tracking-tight font-medium text-on-surface uppercase mt-4">
             Imane Ajebli
@@ -211,22 +212,22 @@ export default function AnimatedTimeline() {
         <div ref={card1Ref} className="absolute top-[200px] left-[100px] w-[450px] p-8 border border-outline/20 bg-surface shadow-sm rounded-xl">
           <p className="font-inter text-[18px] leading-relaxed text-on-surface" dangerouslySetInnerHTML={{ __html: timelineData[0].text }}></p>
         </div>
-        <div ref={img1Ref} className="absolute top-[200px] right-[50px] w-[280px] aspect-[4/3] rounded-xl overflow-hidden shadow-sm">
-          <img src={timelineData[0].img} alt="Milestone 1" className="w-full h-full object-cover" />
+        <div ref={img1Ref} className="absolute top-[200px] right-[50px] w-[280px] aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative">
+          <Image src={timelineData[0].img} alt="Milestone 1" fill className="object-cover" />
         </div>
 
         <div ref={card2Ref} className="absolute top-[700px] right-[100px] w-[450px] p-8 border border-outline/20 bg-surface shadow-sm rounded-xl">
           <p className="font-inter text-[18px] leading-relaxed text-on-surface" dangerouslySetInnerHTML={{ __html: timelineData[1].text }}></p>
         </div>
-        <div ref={img2Ref} className="absolute top-[700px] left-[50px] w-[280px] aspect-[4/3] rounded-xl overflow-hidden shadow-sm">
-          <img src={timelineData[1].img} alt="Milestone 2" className="w-full h-full object-cover" />
+        <div ref={img2Ref} className="absolute top-[700px] left-[50px] w-[280px] aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative">
+          <Image src={timelineData[1].img} alt="Milestone 2" fill className="object-cover" />
         </div>
 
         <div ref={card3Ref} className="absolute top-[1200px] left-[100px] w-[450px] p-8 border border-outline/20 bg-surface shadow-sm rounded-xl">
           <p className="font-inter text-[18px] leading-relaxed text-on-surface" dangerouslySetInnerHTML={{ __html: timelineData[2].text }}></p>
         </div>
-        <div ref={img3Ref} className="absolute top-[1200px] right-[50px] w-[280px] aspect-[4/3] rounded-xl overflow-hidden shadow-sm">
-          <img src={timelineData[2].img} alt="Milestone 3" className="w-full h-full object-cover" />
+        <div ref={img3Ref} className="absolute top-[1200px] right-[50px] w-[280px] aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative">
+          <Image src={timelineData[2].img} alt="Milestone 3" fill className="object-cover" />
         </div>
 
         <div ref={card4Ref} className="absolute top-[1700px] right-[100px] w-[450px] p-8 border border-outline/20 bg-surface shadow-sm rounded-xl flex flex-col gap-6">
@@ -235,8 +236,8 @@ export default function AnimatedTimeline() {
             Connect on LinkedIn
           </a>
         </div>
-        <div ref={img4Ref} className="absolute top-[1700px] left-[50px] w-[280px] aspect-[4/3] rounded-xl overflow-hidden shadow-sm">
-          <img src={timelineData[3].img} alt="Milestone 4" className="w-full h-full object-cover" />
+        <div ref={img4Ref} className="absolute top-[1700px] left-[50px] w-[280px] aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative">
+          <Image src={timelineData[3].img} alt="Milestone 4" fill className="object-cover" />
         </div>
       </div>
     </div>

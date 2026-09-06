@@ -6,35 +6,35 @@ import Image from "next/image";
 const projects = [
   {
     client: "Global Logistics Firm",
-    title: "AI-Powered Pricing Engine",
+    title: "Dynamic Pricing Engine",
     date: "March 2026",
     description: "Helping the world’s largest airport infrastructure technology company on developing and deploying machine-learning based pricing transformation program to generate 3-5% EBITDA margin improvement.",
     image: "/images/cases/CASE 1.webp"
   },
   {
     client: "Healthcare Provider",
-    title: "Patient Triage Agent",
+    title: "Integrated Planning Engine",
     date: "July 2026",
     description: "Building an operational excellence tool to optimize Sales and Operations planning (S&OP) for a USD 1 bn company, by streamlining commercial, operational and procurement decisions to mitigate planning volatility in an increasingly interconnected global supply chain.",
     image: "/images/cases/CASE 2.webp"
   },
   {
     client: "Energy Sector Leader",
-    title: "Predictive Maintenance",
+    title: "RFP Automation Engine",
     date: "June 2026",
     description: "Building an RFP automation engine to help 200+ sales team members of a European B2B industrial player, to save 10-15% of their working time by agentic pre-filling of client RFP compliance documents that often run into thousands of line items per RFP, by basing it on knowledge bases connected to custom internal client data repositories and internal Product Information portals.",
     image: "/images/cases/CASE 3.webp"
   },
   {
     client: "Retail Giant",
-    title: "Demand Forecasting Model",
+    title: "Resource Optimization Engine",
     date: "April 2026",
     description: "Building a price engine for a UK-based sustainability consulting client by optimizing 30+ key variables like team skills, staffing availability, rate cards, topic expertise, client budget etc. to propose ideal team configurations that maximize client delivery impact and profitability.",
     image: "/images/cases/CASE 4.webp"
   },
   {
     client: "Global Bank",
-    title: "Automated KYC Verification",
+    title: "Commercial Excellence Engine",
     date: "July 2026",
     description: "Developing a commercial excellence engine for an iconic PE-owned French kitchen appliances brand for their B2B business to improve profit margins.",
     image: "/images/cases/CASE 5.webp"

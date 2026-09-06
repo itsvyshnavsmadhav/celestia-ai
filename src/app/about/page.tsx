@@ -1,10 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
+import GlobalTextReveal from "@/components/GlobalTextReveal";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import AboutIntro from "@/components/AboutIntro";
 import TeamProfiles from "@/components/TeamProfiles";
 import OurWork from "@/components/OurWork";
-import AboutIntro from "@/components/AboutIntro";
-import GlobalTextReveal from "@/components/GlobalTextReveal";
+import Footer from "@/components/Footer";
 
 export default function AboutPage() {
   return (
@@ -16,10 +16,13 @@ export default function AboutPage() {
         <div id="hero" className="p-4 md:p-6 w-full h-screen min-h-[500px]">
           <div className="relative w-full h-full rounded-[32px] md:rounded-[48px] overflow-hidden flex flex-col justify-center items-center">
             <div className="absolute inset-0 z-0">
-              <img 
+              <Image 
                 src="/images/about-hero-bg.png" 
                 alt="About Celestia AI Background" 
-                className="w-full h-full object-cover object-center" 
+                fill
+                sizes="100vw"
+                className="object-cover object-center" 
+                priority
               />
               {/* Dark overlay for text readability */}
               <div className="absolute inset-0 bg-black/50"></div>

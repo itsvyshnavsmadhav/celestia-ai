@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
+import Image from "next/image"
 
 import {
     useState,
@@ -259,15 +260,15 @@ export default function Smooth3DSlideshow(props: Smooth3DSlideshowProps) {
                         >
                             <div style={cardStyle}>
                                 {src ? (
-                                    <img
+                                    <Image
                                         src={src}
                                         alt={slide.image?.alt || slide.title || ""}
                                         draggable={false}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 400px"
                                         style={{
                                             position: "absolute",
                                             inset: 0,
-                                            width: "100%",
-                                            height: "100%",
                                             objectFit: "cover",
                                             display: "block",
                                             userSelect: "none",

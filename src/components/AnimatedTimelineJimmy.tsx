@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import Image from "next/image";
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
@@ -82,9 +83,11 @@ export default function AnimatedTimelineJimmy() {
       {/* Jimmy's Profile Picture at the Start - Aligned to right (X=960 in viewBox scale) */}
       <div className="absolute top-0 right-[20%] md:right-[240px] translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10">
         <div className="w-[120px] h-[120px] rounded-full overflow-hidden border-4 border-surface shadow-lg">
-          <img 
+          <Image 
             src="/images/founders/JIMMY JOY.webp" 
             alt="Jimmy Joy" 
+            width={120}
+            height={120}
             className="w-full h-full object-cover"
           />
         </div>
