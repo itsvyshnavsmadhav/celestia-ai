@@ -104,7 +104,7 @@ export default function Expertise() {
                       <video 
                         id="expertise-video"
                         ref={videoRef}
-                        src="/Celestia_AI(1080p).mp4"
+                        src="/celestia_ai.mp4"
                         poster="/thumbnail.png"
                         loop
                         muted={isMuted}
