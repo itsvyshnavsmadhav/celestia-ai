@@ -11,9 +11,9 @@ export default function Footer() {
             <Image 
               src="/images/brand/footer-logo-transparent.png" 
               alt="Celestia AI" 
-              width={400} 
-              height={80} 
-              className="w-[200px] md:w-[300px] lg:w-[400px] h-auto object-contain" 
+              width={250} 
+              height={50} 
+              className="w-[150px] md:w-[200px] lg:w-[250px] h-auto object-contain" 
             />
           </Link>
         </div>

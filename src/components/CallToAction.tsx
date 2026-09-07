@@ -1,6 +1,6 @@
 export default function CallToAction() {
   return (
-    <section className="relative bg-background py-16 md:py-32 overflow-hidden z-10 border-t border-outline/20">
+    <section className="relative bg-background py-10 md:py-16 overflow-hidden z-10 border-t border-outline/20">
       {/* Decorative Wavy Background */}
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none overflow-hidden">
         <svg 
@@ -17,14 +17,13 @@ export default function CallToAction() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 items-center">
           
           {/* Left Column */}
           <div className="flex flex-col items-start gap-8">
             <h2 className="font-hanken text-[32px] sm:text-[36px] md:text-[48px] lg:text-[56px] text-on-surface font-medium leading-[1.1] tracking-tight">
-              Ready to see real<br />
-              business value<br />
-              from AI?
+              Ready to solve problems<br />
+              that deliver value?
             </h2>
             
             <a 

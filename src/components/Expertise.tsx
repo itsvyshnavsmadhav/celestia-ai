@@ -81,11 +81,11 @@ export default function Expertise() {
           </span>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center mt-6 md:mt-8">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch mt-6 md:mt-8">
           
           {/* Left: Square Video Placeholder */}
           <div className="w-full lg:w-[55%] flex justify-center">
-            <div className="w-full max-w-[600px] lg:max-w-none aspect-video bg-surface-container-low rounded-[2rem] overflow-hidden relative shadow-md group">
+            <div className="w-full max-w-[600px] lg:max-w-none h-full min-h-[300px] md:min-h-[400px] bg-surface-container-low rounded-[2rem] overflow-hidden relative shadow-md group">
                 <motion.div 
                   layout
                   transition={{ type: "spring", bounce: 0, duration: 0.7 }}
@@ -107,6 +107,7 @@ export default function Expertise() {
                         src="/celestia_ai.mp4"
                         poster="/thumbnail.png"
                         loop
+                        preload="none"
                         muted={isMuted}
                         playsInline
                         className={`w-full h-full cursor-pointer ${isExpanded ? "object-contain bg-black" : "object-cover"}`}

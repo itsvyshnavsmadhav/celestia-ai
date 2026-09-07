@@ -12,14 +12,13 @@ export default function Hero() {
   const [showThirdText, setShowThirdText] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 0px)", () => {
-        const tl = gsap.timeline({
+        gsap.timeline({
           scrollTrigger: {
             trigger: containerRef.current,
             pin: true,
@@ -28,11 +27,6 @@ export default function Hero() {
             scrub: true,
           },
         });
-
-        tl.fromTo(scrollIndicatorRef.current,
-          { scaleY: 0 },
-          { scaleY: 1, ease: "none" }
-        );
       });
     }, containerRef);
 
@@ -139,15 +133,6 @@ export default function Hero() {
         <div 
           className="absolute inset-0 w-full h-full border border-white/10 pointer-events-none z-30 shadow-[0_0_30px_rgba(255,255,255,0.05)]"
         >
-        </div>
-
-        {/* Scroll Progress Indicator */}
-        <div className="absolute right-4 md:right-8 top-[30%] bottom-[30%] w-[3px] bg-white/10 z-50 rounded-full overflow-hidden pointer-events-none hidden sm:block">
-          <div 
-            ref={scrollIndicatorRef}
-            className="w-full h-full bg-white/60 origin-top"
-            style={{ transform: "scaleY(0)" }}
-          />
         </div>
       </div>
     </section>
