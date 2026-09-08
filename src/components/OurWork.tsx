@@ -99,7 +99,7 @@ export default function OurWork() {
             </div>
             
             {/* Second Set for Loop */}
-            <div className="flex flex-row h-full items-center gap-6 px-3">
+            <div className="hidden md:flex flex-row h-full items-center gap-6 px-3">
               {projects.map((project, i) => (
                 <ProjectCard 
                   key={`set2-${i}`} 
