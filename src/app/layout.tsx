@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth overflow-x-hidden" data-scroll-behavior="smooth">
+    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
       <head>
         {/* Load Google Fonts */}
         <link
@@ -43,7 +43,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="relative min-h-screen bg-black text-white selection:bg-white selection:text-black overflow-x-hidden">
+      <body className="relative min-h-screen bg-black text-white selection:bg-white selection:text-black overflow-x-clip w-full">
         <div className="texture-overlay" />
         {children}
       </body>
