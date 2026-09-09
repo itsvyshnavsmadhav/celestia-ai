@@ -47,11 +47,11 @@ export default function ProjectTimeline() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-5 relative z-10">
             {phases.map((phase, i) => (
-              <div key={i} className="bg-surface-container rounded-[1.5rem] p-6 lg:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.2)] flex flex-col items-center text-center relative mt-8 lg:mt-0">
+              <div key={i} className="bg-surface-container rounded-[1.5rem] p-6 lg:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.2)] flex flex-col items-start text-left relative mt-8 lg:mt-0">
                 
 
                 {/* Card Content */}
-                <div className="mt-6 flex flex-col items-center flex-1">
+                <div className="mt-6 flex flex-col items-start flex-1 w-full">
                   
                   {/* Icon Wrapper */}
                   <div className="w-[60px] h-[60px] rounded-full flex items-center justify-center mb-5 relative">
@@ -73,7 +73,7 @@ export default function ProjectTimeline() {
                   </div>
                   
                   {/* Description */}
-                  <p className="font-inter text-[13px] leading-relaxed text-on-surface-variant text-justify w-full">
+                  <p className="font-inter text-[13px] leading-relaxed text-on-surface-variant text-left w-full">
                     {phase.description}
                   </p>
                 </div>
