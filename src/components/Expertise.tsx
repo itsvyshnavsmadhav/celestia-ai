@@ -33,7 +33,7 @@ const expertiseCards = [
 
 export default function Expertise() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -42,11 +42,33 @@ export default function Expertise() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) {
-          setIsMuted(true);
+        if (entry.isIntersecting) {
+          setIsMuted(false);
+          if (videoRef.current) {
+            videoRef.current.muted = false;
+            const playPromise = videoRef.current.play();
+            if (playPromise !== undefined) {
+              playPromise.then(() => {
+                setIsPlaying(true);
+              }).catch(() => {
+                // Autoplay with sound blocked by browser, try muted
+                setIsMuted(true);
+                if (videoRef.current) {
+                  videoRef.current.muted = true;
+                  videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+                }
+              });
+            }
+          }
+        } else {
+          // Pause when out of view to save resources
+          if (videoRef.current) {
+            videoRef.current.pause();
+            setIsPlaying(false);
+          }
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.4 }
     );
 
     if (sectionRef.current) {
