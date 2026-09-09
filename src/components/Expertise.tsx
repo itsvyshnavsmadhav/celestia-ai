@@ -51,12 +51,10 @@ export default function Expertise() {
               playPromise.then(() => {
                 setIsPlaying(true);
               }).catch(() => {
-                // Autoplay with sound blocked by browser, try muted
-                setIsMuted(true);
-                if (videoRef.current) {
-                  videoRef.current.muted = true;
-                  videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
-                }
+                // Autoplay with sound blocked by browser. 
+                // We do NOT fallback to muted, as requested by user.
+                // It will remain paused with the play button visible.
+                setIsPlaying(false);
               });
             }
           }
