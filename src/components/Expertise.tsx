@@ -36,6 +36,7 @@ export default function Expertise() {
   const [isMuted, setIsMuted] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -134,7 +135,35 @@ export default function Expertise() {
                         onClick={togglePlay}
                         onPlay={() => setIsPlaying(true)}
                         onPause={() => setIsPlaying(false)}
+                        onTimeUpdate={(e) => {
+                          const v = e.currentTarget;
+                          if (v.duration) {
+                            setProgress((v.currentTime / v.duration) * 100);
+                          }
+                        }}
                       />
+                      
+                      {/* YouTube-style Progress Bar */}
+                      {isExpanded && (
+                        <div 
+                          className="absolute bottom-0 left-0 right-0 h-1.5 bg-white/20 hover:h-2 transition-all cursor-pointer z-30 group/progress"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (videoRef.current && videoRef.current.duration) {
+                              const rect = e.currentTarget.getBoundingClientRect();
+                              const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+                              videoRef.current.currentTime = pos * videoRef.current.duration;
+                            }
+                          }}
+                        >
+                          <div 
+                            className="h-full bg-[#B88D5E] relative"
+                            style={{ width: `${progress}%` }}
+                          >
+                            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3.5 h-3.5 bg-white rounded-full opacity-0 group-hover/progress:opacity-100 shadow-md transition-opacity" />
+                          </div>
+                        </div>
+                      )}
                       
                       {/* Big Play Button Overlay */}
                       {!isPlaying && (
