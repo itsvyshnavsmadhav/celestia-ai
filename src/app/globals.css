@@ -64,6 +64,10 @@
  }
 
  /* Custom Base Styles for Quiet Luxury */
+ * {
+   -webkit-tap-highlight-color: transparent;
+ }
+
  body {
    background-color: var(--color-surface);
    color: var(--color-on-surface);
@@ -71,6 +75,7 @@
    -moz-osx-font-smoothing: grayscale;
    min-height: max(884px, 100dvh);
    font-family: var(--font-inter), sans-serif;
+   overscroll-behavior-y: none; /* Prevents pull-to-refresh bounce for an app-like feel */
  }
 
  /* Film grain texture overlay */

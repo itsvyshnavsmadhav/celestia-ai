@@ -146,7 +146,7 @@ export default function Expertise() {
                       {/* YouTube-style Progress Bar */}
                       {isExpanded && (
                         <div 
-                          className="absolute bottom-0 left-0 right-0 h-1.5 bg-white/20 hover:h-2 transition-all cursor-pointer z-30 group/progress"
+                          className="absolute bottom-6 left-6 right-6 h-2 md:h-3 bg-white/40 rounded-full hover:h-3 md:hover:h-4 transition-all cursor-pointer z-30 group/progress shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
                           onClick={(e) => {
                             e.stopPropagation();
                             if (videoRef.current && videoRef.current.duration) {
@@ -157,10 +157,10 @@ export default function Expertise() {
                           }}
                         >
                           <div 
-                            className="h-full bg-[#B88D5E] relative"
+                            className="h-full bg-[#D4A373] relative rounded-full"
                             style={{ width: `${progress}%` }}
                           >
-                            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3.5 h-3.5 bg-white rounded-full opacity-0 group-hover/progress:opacity-100 shadow-md transition-opacity" />
+                            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 md:w-5 md:h-5 bg-white rounded-full shadow-[0_0_10px_rgba(0,0,0,0.8)] transition-transform scale-100 group-hover/progress:scale-125" />
                           </div>
                         </div>
                       )}
