@@ -144,26 +144,24 @@ export default function Expertise() {
                       />
                       
                       {/* YouTube-style Progress Bar */}
-                      {isExpanded && (
+                      <div 
+                        className="absolute bottom-6 left-6 right-6 h-2 md:h-3 bg-white/40 rounded-full hover:h-3 md:hover:h-4 transition-all cursor-pointer z-30 group/progress shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (videoRef.current && videoRef.current.duration) {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+                            videoRef.current.currentTime = pos * videoRef.current.duration;
+                          }
+                        }}
+                      >
                         <div 
-                          className="absolute bottom-6 left-6 right-6 h-2 md:h-3 bg-white/40 rounded-full hover:h-3 md:hover:h-4 transition-all cursor-pointer z-30 group/progress shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (videoRef.current && videoRef.current.duration) {
-                              const rect = e.currentTarget.getBoundingClientRect();
-                              const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-                              videoRef.current.currentTime = pos * videoRef.current.duration;
-                            }
-                          }}
+                          className="h-full bg-[#D4A373] relative rounded-full"
+                          style={{ width: `${progress}%` }}
                         >
-                          <div 
-                            className="h-full bg-[#D4A373] relative rounded-full"
-                            style={{ width: `${progress}%` }}
-                          >
-                            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 md:w-5 md:h-5 bg-white rounded-full shadow-[0_0_10px_rgba(0,0,0,0.8)] transition-transform scale-100 group-hover/progress:scale-125" />
-                          </div>
+                          <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 md:w-5 md:h-5 bg-white rounded-full shadow-[0_0_10px_rgba(0,0,0,0.8)] transition-transform scale-100 group-hover/progress:scale-125" />
                         </div>
-                      )}
+                      </div>
                       
                       {/* Big Play Button Overlay */}
                       {!isPlaying && (
