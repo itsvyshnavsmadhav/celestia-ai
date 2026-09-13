@@ -77,7 +77,17 @@ export default function Expertise() {
     return () => observer.disconnect();
   }, []);
 
-
+  useEffect(() => {
+    if (isExpanded) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isExpanded]);
 
   const togglePlay = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -93,7 +103,7 @@ export default function Expertise() {
   };
 
   return (
-    <section ref={sectionRef} className="min-h-[100dvh] py-12 md:py-16 bg-background relative z-10 flex flex-col justify-center">
+    <section ref={sectionRef} className={`min-h-[100dvh] py-12 md:py-16 bg-background relative flex flex-col justify-center ${isExpanded ? 'z-[999]' : 'z-10'}`}>
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
         
         <div className="flex flex-col items-center mb-16 md:mb-20">
@@ -175,39 +185,38 @@ export default function Expertise() {
                       )}
                       
                       {/* Mute/Unmute Button */}
-                      {!isExpanded && (
-                        <button 
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setIsMuted(!isMuted);
-                          }}
-                          className="absolute top-4 right-16 bg-black/40 hover:bg-black/60 text-white p-2 rounded-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-20"
-                          aria-label={isMuted ? "Unmute Video" : "Mute Video"}
-                        >
-                          {isMuted ? (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-                          ) : (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                          )}
-                        </button>
-                      )}
+                      {/* Mute/Unmute Button */}
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsMuted(!isMuted);
+                        }}
+                        className={`absolute top-4 ${isExpanded ? "right-14 md:right-20 bg-white/20 hover:bg-white/40 p-2 md:p-3 rounded-full z-50" : "right-12 md:right-16 bg-black/40 hover:bg-black/60 p-2 rounded-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 z-20"} text-white transition-opacity duration-300 backdrop-blur-md`}
+                        aria-label={isMuted ? "Unmute Video" : "Mute Video"}
+                      >
+                        {isMuted ? (
+                          <svg xmlns="http://www.w3.org/2000/svg" className={isExpanded ? "w-5 h-5 md:w-6 md:h-6" : "w-5 h-5"} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                        ) : (
+                          <svg xmlns="http://www.w3.org/2000/svg" className={isExpanded ? "w-5 h-5 md:w-6 md:h-6" : "w-5 h-5"} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        )}
+                      </button>
 
                       {/* Fullscreen Expand Button */}
                       {!isExpanded ? (
                         <button 
                           onClick={() => setIsExpanded(true)}
-                          className="absolute top-4 right-4 bg-black/40 hover:bg-black/60 text-white p-2 rounded-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-20"
+                          className="absolute top-4 right-2 md:right-4 bg-black/40 hover:bg-black/60 text-white p-2 rounded-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-20"
                           aria-label="Expand Video"
                         >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
                         </button>
                       ) : (
                         <button 
                           onClick={() => setIsExpanded(false)}
-                          className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-colors z-50 backdrop-blur-md"
+                          className="absolute top-4 right-3 md:right-4 bg-white/20 hover:bg-white/40 text-white p-2 md:p-3 rounded-full transition-colors z-50 backdrop-blur-md"
                           aria-label="Close Video"
                         >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                         </button>
                       )}
                     </motion.div>
