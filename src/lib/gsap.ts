@@ -11,6 +11,9 @@ if (typeof window !== "undefined") {
     smoothWheel: true,
     syncTouch: false,
   });
+  
+  // Expose to window for global access (e.g., scroll locking)
+  (window as any).lenis = lenis;
 
   // Connect Lenis to ScrollTrigger
   lenis.on("scroll", ScrollTrigger.update);

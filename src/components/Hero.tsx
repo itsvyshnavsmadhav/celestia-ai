@@ -1,17 +1,22 @@
 "use client";
 
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, { useRef, useState, useLayoutEffect, useEffect } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
-  const [showFirstText, setShowFirstText] = useState(false);
-  const [showSecondText, setShowSecondText] = useState(false);
-  const [showThirdText, setShowThirdText] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % 3);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -42,7 +47,7 @@ export default function Hero() {
         {/* Dynamic Video-driven Text Overlay 1 */}
         <div 
           className={`absolute z-50 left-[5%] md:left-[8%] bottom-[15%] max-w-4xl pointer-events-none transition-all duration-700 ease-in-out flex flex-col gap-4 ${
-            showFirstText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            activeIndex === 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
           <h1 className="font-serif text-[32px] sm:text-[42px] lg:text-[64px] font-bold leading-[1.1] tracking-tight text-white drop-shadow-md">
@@ -56,7 +61,7 @@ export default function Hero() {
         {/* Dynamic Video-driven Text Overlay 2 */}
         <div 
           className={`absolute z-50 left-[5%] md:left-[8%] bottom-[15%] max-w-4xl pointer-events-none transition-all duration-700 ease-in-out flex flex-col gap-4 ${
-            showSecondText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            activeIndex === 1 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
           <h1 className="font-serif text-[32px] sm:text-[42px] lg:text-[64px] font-bold leading-[1.1] tracking-tight text-white drop-shadow-md">
@@ -70,7 +75,7 @@ export default function Hero() {
         {/* Dynamic Video-driven Text Overlay 3 */}
         <div 
           className={`absolute z-50 left-[5%] md:left-[8%] bottom-[15%] max-w-4xl pointer-events-none transition-all duration-700 ease-in-out flex flex-col gap-4 ${
-            showThirdText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            activeIndex === 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
           <h1 className="font-serif text-[32px] sm:text-[42px] lg:text-[64px] font-bold leading-[1.1] tracking-tight text-white drop-shadow-md">
@@ -93,31 +98,6 @@ export default function Hero() {
              preload="auto"
              poster="/hero-poster.jpg"
              className="absolute inset-0 w-full h-full object-cover object-center z-0"
-             onTimeUpdate={(e) => {
-               // We modulo 8 so it repeats every 8 seconds if the video is longer
-               const time = e.currentTarget.currentTime % 8;
-               
-               // First text: 0s to 2s
-               if (time >= 0 && time < 2.0) {
-                 if (!showFirstText) setShowFirstText(true);
-               } else {
-                 if (showFirstText) setShowFirstText(false);
-               }
-
-               // Second text: 3s to 5s
-               if (time >= 3.0 && time < 5.0) {
-                 if (!showSecondText) setShowSecondText(true);
-               } else {
-                 if (showSecondText) setShowSecondText(false);
-               }
-
-               // Third text: 6s to 8s
-               if (time >= 6.0 && time < 8.0) {
-                 if (!showThirdText) setShowThirdText(true);
-               } else {
-                 if (showThirdText) setShowThirdText(false);
-               }
-             }}
            >
              <source src="/VN20260831_225301.mp4" type="video/mp4" />
            </video>

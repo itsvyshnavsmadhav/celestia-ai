@@ -34,9 +34,9 @@ export default function ProjectTimeline() {
     <div className="bg-background py-16 md:py-20 lg:py-24 relative overflow-hidden min-h-screen flex flex-col justify-center">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
-        <div className="mb-12 md:mb-16 flex flex-col items-center">
-          <h2 className="font-serif text-[32px] md:text-[42px] lg:text-[48px] text-on-surface leading-tight tracking-tight text-center max-w-4xl mx-auto">
-            WE BUILD, ITERATE AND GO-LIVE IN 5 TO 6 WEEKS
+        <div className="mb-12 md:mb-16 flex flex-col items-start">
+          <h2 className="font-hanken text-[32px] sm:text-[36px] md:text-[48px] lg:text-[56px] text-on-surface font-medium leading-[1.1] tracking-tight">
+            We build, iterate and go-live in 5-6 weeks
           </h2>
         </div>
 

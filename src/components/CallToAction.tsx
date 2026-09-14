@@ -16,7 +16,7 @@ export default function CallToAction() {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 items-center">
           
           {/* Left Column */}
@@ -38,12 +38,7 @@ export default function CallToAction() {
             </a>
           </div>
 
-          {/* Right Column */}
-          <div className="flex items-center">
-            <p className="font-inter text-[16px] md:text-[18px] text-on-surface-variant leading-[1.8] font-light max-w-md">
-              We help forward-thinking teams turn hard problems into measurable results.
-            </p>
-          </div>
+
 
         </div>
       </div>

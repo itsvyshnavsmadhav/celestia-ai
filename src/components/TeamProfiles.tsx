@@ -33,8 +33,8 @@ export default function TeamProfiles() {
   return (
     <section className="w-full max-w-7xl mx-auto px-6 md:px-12 pt-8 pb-8 md:pt-12 md:pb-12 mb-8 md:mb-12 relative z-10">
       
-      <div className="mb-16 flex justify-center">
-        <span className="font-hanken text-[14px] md:text-[16px] font-bold tracking-[0.15em] text-on-surface uppercase text-center">
+      <div className="mb-16 flex justify-start">
+        <span className="font-hanken text-[14px] md:text-[16px] font-bold tracking-[0.15em] text-on-surface uppercase">
           THE TEAM
         </span>
       </div>

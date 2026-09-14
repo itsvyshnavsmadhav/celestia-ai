@@ -39,6 +39,11 @@ export default function Expertise() {
   const [progress, setProgress] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const isExpandedRef = useRef(isExpanded);
+
+  useEffect(() => {
+    isExpandedRef.current = isExpanded;
+  }, [isExpanded]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,7 +66,7 @@ export default function Expertise() {
           }
         } else {
           // Pause when out of view to save resources
-          if (videoRef.current) {
+          if (videoRef.current && !isExpandedRef.current) {
             videoRef.current.pause();
             setIsPlaying(false);
           }
@@ -80,12 +85,24 @@ export default function Expertise() {
   useEffect(() => {
     if (isExpanded) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      if (typeof window !== "undefined" && (window as any).lenis) {
+        (window as any).lenis.stop();
+      }
     } else {
       document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
+      if (typeof window !== "undefined" && (window as any).lenis) {
+        (window as any).lenis.start();
+      }
     }
     
     return () => {
       document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
+      if (typeof window !== "undefined" && (window as any).lenis) {
+        (window as any).lenis.start();
+      }
     };
   }, [isExpanded]);
 
@@ -106,10 +123,10 @@ export default function Expertise() {
     <section ref={sectionRef} className={`min-h-[100dvh] py-12 md:py-16 bg-background relative flex flex-col justify-center ${isExpanded ? 'z-[999]' : 'z-10'}`}>
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
         
-        <div className="flex flex-col items-center mb-16 md:mb-20">
-          <span className="font-hanken text-[14px] md:text-[16px] font-bold tracking-[0.15em] text-on-surface uppercase text-center mb-4">
-            EXPERTISE
-          </span>
+        <div className="flex flex-col items-start mb-16 md:mb-20">
+          <h2 className="font-hanken text-[32px] sm:text-[36px] md:text-[48px] lg:text-[56px] text-on-surface font-medium leading-[1.1] tracking-tight">
+            Our Expertise
+          </h2>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch mt-6 md:mt-8">
@@ -214,9 +231,9 @@ export default function Expertise() {
                         <button 
                           onClick={() => setIsExpanded(false)}
                           className="absolute top-4 right-3 md:right-4 bg-white/20 hover:bg-white/40 text-white p-2 md:p-3 rounded-full transition-colors z-50 backdrop-blur-md"
-                          aria-label="Close Video"
+                          aria-label="Zoom Out Video"
                         >
-                          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path></svg>
                         </button>
                       )}
                     </motion.div>
