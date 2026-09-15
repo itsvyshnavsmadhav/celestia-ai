@@ -24,14 +24,14 @@ const phases = [
   {
     num: "WEEK 5-6:",
     title: "Go-live with tool",
-    description: "Focus of final weeks of the project is on go-live of the tool, training and onboarding of all end-users. During this phase, we collaborate closely with end-users in a hyper care model, to ensure full adoption, smooth transition and clear alignment on new ways of working.",
+    description: "Focus of final weeks of the project is on hosting, security tests, user acceptance, training and onboarding of users. During this phase, we collaborate closely with end-users in a hyper care model, to ensure full adoption, smooth transition and clear alignment on new ways of working.",
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B88D5E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
   }
 ];
 
 export default function ProjectTimeline() {
   return (
-    <div className="bg-background py-16 md:py-20 lg:py-24 relative overflow-hidden min-h-screen flex flex-col justify-center">
+    <div className="bg-background py-12 md:py-16 relative overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
         <div className="mb-12 md:mb-16 flex flex-col items-start">

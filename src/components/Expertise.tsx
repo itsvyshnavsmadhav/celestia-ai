@@ -121,7 +121,7 @@ export default function Expertise() {
 
   return (
     <section ref={sectionRef} className={`min-h-[100dvh] py-12 md:py-16 bg-background relative flex flex-col justify-center ${isExpanded ? 'z-[999]' : 'z-10'}`}>
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
         
         <div className="flex flex-col items-start mb-16 md:mb-20">
           <h2 className="font-hanken text-[32px] sm:text-[36px] md:text-[48px] lg:text-[56px] text-on-surface font-medium leading-[1.1] tracking-tight">

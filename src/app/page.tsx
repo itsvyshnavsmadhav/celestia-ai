@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <GlobalTextReveal />
-      <Header hideUntilScroll={true} />
+      <Header hideUntilScroll={false} />
       <main>
         <Hero />
         <div className="relative z-10">

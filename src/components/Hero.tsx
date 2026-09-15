@@ -1,10 +1,8 @@
 "use client";
 
-import React, { useRef, useState, useLayoutEffect, useEffect } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import React, { useRef, useState, useEffect } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
+import Image from "next/image";
 
 export default function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -18,25 +16,6 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-
-      mm.add("(min-width: 0px)", () => {
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: containerRef.current,
-            pin: true,
-            start: "top top",
-            end: "+=100%",
-            scrub: true,
-          },
-        });
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
   
   return (
     <section ref={containerRef} className="relative w-full h-screen z-0">
@@ -90,17 +69,28 @@ export default function Hero() {
         <div 
           className="absolute inset-0 w-full h-full bg-[#000] overflow-hidden flex items-center justify-center z-10"
         >
-           <video
-             autoPlay
-             loop
-             muted
-             playsInline
-             preload="auto"
-             poster="/hero-poster.jpg"
-             className="absolute inset-0 w-full h-full object-cover object-center z-0"
-           >
-             <source src="/VN20260831_225301.mp4" type="video/mp4" />
-           </video>
+          {/* Optimized Poster Image for instant LCP on mobile */}
+          <Image 
+            src="/hero-poster.jpg" 
+            alt="Hero Background" 
+            fill 
+            priority
+            quality={60}
+            className="object-cover object-center z-0" 
+            sizes="100vw"
+          />
+          {/* Video Layer that fades in once ready */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 w-full h-full object-cover object-center z-10 opacity-0 transition-opacity duration-1000"
+            onCanPlay={(e) => { e.currentTarget.style.opacity = '1'; }}
+          >
+            <source src="/VN20260831_225301.mp4" type="video/mp4" />
+          </video>
         </div>
 
         {/* Layer 1 (Clear Glass Panel) */}

@@ -52,44 +52,34 @@ export default function OurWork() {
     <div className="our-work-wrapper">
       <section className="relative h-[100vh] w-full bg-background overflow-hidden flex flex-col justify-center z-30" ref={containerRef}>
         {/* Header - Normal flow */}
-        <div className="w-full max-w-7xl mx-auto px-6 z-30 pointer-events-none shrink-0 pt-16 md:pt-24 mb-12">
-          <div className="flex flex-col gap-6 pointer-events-auto max-w-4xl">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 z-30 pointer-events-none shrink-0 pt-16 md:pt-24 mb-12">
+          <div className="flex flex-col gap-6 pointer-events-auto w-full">
             <span className="font-hanken text-[14px] md:text-[16px] font-bold tracking-[0.15em] text-on-surface uppercase">
               OUR WORK
             </span>
-            <h2 className="font-hanken text-[40px] md:text-[56px] lg:text-[64px] font-medium text-on-surface leading-[1.1] tracking-tight">
+            <h2 className="font-hanken text-[40px] md:text-[56px] lg:text-[64px] font-medium text-on-surface leading-[1.1] tracking-tight md:whitespace-nowrap">
               Real impact with measurable outcomes.
             </h2>
           </div>
         </div>
 
         {/* Horizontal Scroll Wrapper */}
-        <div className="relative w-full flex-1 flex flex-col justify-start min-h-0 overflow-x-auto md:overflow-x-hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-          <style>{`
-            .relative.w-full::-webkit-scrollbar { display: none; }
-            @keyframes marquee {
-              0% { transform: translateX(0%); }
-              100% { transform: translateX(-50%); }
-            }
-            @media (min-width: 768px) {
-              .animate-marquee {
-                animation: marquee 35s linear infinite;
-              }
-              .animate-marquee:hover {
-                animation-play-state: paused;
-              }
-            }
-          `}</style>
+        <div className="relative w-full flex-1 flex flex-col justify-start min-h-0 group/carousel">
           
           <div 
             ref={scrollWrapRef}
-            className="flex flex-row w-max h-[60vh] md:h-[65vh] items-center relative z-20 animate-marquee"
+            className="flex flex-row w-full h-[60vh] md:h-[65vh] items-center relative z-20 overflow-x-auto snap-x snap-mandatory scroll-smooth px-4 sm:px-6"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {/* First Set */}
-            <div className="flex flex-row h-full items-center gap-6 px-3">
+            {/* Scroll hidden for webkit */}
+            <style>{`
+              .relative.w-full::-webkit-scrollbar { display: none; }
+            `}</style>
+            
+            <div className="flex flex-row h-full items-center gap-6 pb-4">
               {projects.map((project, i) => (
                 <ProjectCard 
-                  key={`set1-${i}`} 
+                  key={`proj-${i}`} 
                   project={project} 
                   index={i} 
                   expandedIndex={expandedIndex} 
@@ -97,19 +87,37 @@ export default function OurWork() {
                 />
               ))}
             </div>
-            
-            {/* Second Set for Loop */}
-            <div className="hidden md:flex flex-row h-full items-center gap-6 px-3">
-              {projects.map((project, i) => (
-                <ProjectCard 
-                  key={`set2-${i}`} 
-                  project={project} 
-                  index={i + projects.length} 
-                  expandedIndex={expandedIndex} 
-                  setExpandedIndex={setExpandedIndex} 
-                />
-              ))}
-            </div>
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 z-40 opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+            <button 
+              onClick={() => {
+                if (scrollWrapRef.current) {
+                  const cardWidth = window.innerWidth < 768 ? window.innerWidth * 0.85 : window.innerWidth * 0.40;
+                  scrollWrapRef.current.scrollBy({ left: -(cardWidth + 24), behavior: 'smooth' });
+                }
+              }}
+              className="w-12 h-12 md:w-14 md:h-14 bg-black/60 hover:bg-[#B88D5E] text-white rounded-full flex items-center justify-center backdrop-blur-md border border-white/10 transition-colors shadow-lg"
+              aria-label="Scroll left"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+          </div>
+
+          <div className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 z-40 opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+            <button 
+              onClick={() => {
+                if (scrollWrapRef.current) {
+                  const cardWidth = window.innerWidth < 768 ? window.innerWidth * 0.85 : window.innerWidth * 0.40;
+                  scrollWrapRef.current.scrollBy({ left: (cardWidth + 24), behavior: 'smooth' });
+                }
+              }}
+              className="w-12 h-12 md:w-14 md:h-14 bg-black/60 hover:bg-[#B88D5E] text-white rounded-full flex items-center justify-center backdrop-blur-md border border-white/10 transition-colors shadow-lg"
+              aria-label="Scroll right"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
           </div>
         </div>
       </section>

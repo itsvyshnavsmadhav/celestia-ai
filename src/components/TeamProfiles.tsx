@@ -7,7 +7,7 @@ export default function TeamProfiles() {
     {
       name: "Jimmy Joy",
       title: "Co-founder",
-      image: "/images/founders/founder1_new.webp",
+      image: "/images/founders/JIMMY JOY.webp",
       linkedin: "https://www.linkedin.com/in/jimmyjoy88/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BY1qnEdTmR6mFfxSJJeusbw%3D%3D",
       bullets: [
         "Formerly <strong>Associate Partner</strong> at <strong>McKinsey & Company</strong>, Jimmy is a co-founder of Celestia AI and leads technology innovation.",
@@ -19,7 +19,7 @@ export default function TeamProfiles() {
     {
       name: "Imane Ajebli",
       title: "Co-founder",
-      image: "/images/founders/founder2_new.webp",
+      image: "/images/founders/IMANE AJEBLI.webp",
       linkedin: "https://www.linkedin.com/in/imane-ajebli-3b78075a/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Box5uqHa3QYGzKkzEvHfIew%3D%3D",
       bullets: [
         "Formerly <strong>Senior Engagement Manager at McKinsey & Company</strong>, Imane is a <strong>co-founder</strong> of Celestia AI and leads client delivery and operations.",
@@ -31,7 +31,7 @@ export default function TeamProfiles() {
   ];
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 md:px-12 pt-8 pb-8 md:pt-12 md:pb-12 mb-8 md:mb-12 relative z-10">
+    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-8 md:pt-12 md:pb-12 mb-8 md:mb-12 relative z-10">
       
       <div className="mb-16 flex justify-start">
         <span className="font-hanken text-[14px] md:text-[16px] font-bold tracking-[0.15em] text-on-surface uppercase">

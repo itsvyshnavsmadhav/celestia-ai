@@ -13,7 +13,7 @@ export default function Footer() {
               alt="Celestia AI" 
               width={250} 
               height={50} 
-              className="w-[150px] md:w-[200px] lg:w-[250px] h-auto object-contain" 
+              className="w-[150px] md:w-[200px] lg:w-[250px] h-auto object-contain object-left -ml-2 md:-ml-3" 
             />
           </Link>
         </div>

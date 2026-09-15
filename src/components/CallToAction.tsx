@@ -17,29 +17,22 @@ export default function CallToAction() {
       </div>
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 items-center">
+        <div className="flex flex-col items-start gap-8 max-w-4xl">
+          <h2 className="font-hanken text-[32px] sm:text-[36px] md:text-[48px] lg:text-[56px] text-on-surface font-medium leading-[1.1] tracking-tight">
+            Ready to solve problems<br />
+            that deliver value?
+          </h2>
           
-          {/* Left Column */}
-          <div className="flex flex-col items-start gap-8">
-            <h2 className="font-hanken text-[32px] sm:text-[36px] md:text-[48px] lg:text-[56px] text-on-surface font-medium leading-[1.1] tracking-tight">
-              Ready to solve problems<br />
-              that deliver value?
-            </h2>
-            
-            <a 
-              href="/contact" 
-              className="inline-flex items-center gap-3 bg-[#B88D5E] text-white px-8 py-4 rounded-full font-hanken text-[14px] font-bold tracking-widest uppercase hover:bg-[#A17A4D] transition-colors"
-            >
-              LET&apos;S TALK
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-              </svg>
-            </a>
-          </div>
-
-
-
+          <a 
+            href="/contact" 
+            className="inline-flex items-center gap-3 bg-[#B88D5E] text-white px-8 py-4 rounded-full font-hanken text-[14px] font-bold tracking-widest uppercase hover:bg-[#A17A4D] transition-colors"
+          >
+            LET&apos;S TALK
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
         </div>
       </div>
     </section>

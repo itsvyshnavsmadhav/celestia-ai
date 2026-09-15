@@ -44,7 +44,7 @@ ${message}`;
               Let&apos;s <span className="text-[#D4A373]">Talk</span>
             </h1>
             <p className="font-inter text-[15px] md:text-[18px] text-on-surface-variant mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              Tell us about your project and we&apos;ll get back to you within a day.
+              Tell us about your business problem and we&apos;ll get back to you within a day.
             </p>
 
             <div className="flex flex-col gap-6 md:gap-8 mx-auto lg:mx-0 max-w-xs md:max-w-full text-left">
@@ -80,6 +80,13 @@ ${message}`;
                   <p className="font-inter text-[14px] text-on-surface-variant">No upfront commitment, we carry the risk, not you</p>
                 </div>
               </div>
+            </div>
+
+            {/* Footnote */}
+            <div className="mx-auto lg:mx-0 max-w-lg mt-12 pt-8 border-t border-outline/10">
+              <p className="font-inter text-[11px] md:text-[12px] text-on-surface-variant/60 leading-relaxed text-left">
+                Registered office: Celestia AI (Enviroworld Consultancy), Building A1, Dubai Digital Park, Dubai Silicon Oasis, Dubai, United Arab Emirates, Dubai Trade License No. 66089
+              </p>
             </div>
           </div>
 
@@ -163,7 +170,7 @@ ${message}`;
                 </div>
                 <textarea 
                   rows={5}
-                  placeholder="Tell us about your project"
+                  placeholder="Tell us about your business problem"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-outline/20 bg-surface-container-lowest focus:bg-surface-container focus:outline-none focus:border-[#DFBE82] focus:ring-1 focus:ring-[#DFBE82] transition-colors resize-y placeholder:text-on-surface-variant text-[14px] font-inter text-on-surface"
