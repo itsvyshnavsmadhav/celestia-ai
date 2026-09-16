@@ -82,12 +82,6 @@ ${message}`;
               </div>
             </div>
 
-            {/* Footnote */}
-            <div className="mx-auto lg:mx-0 max-w-lg mt-12 pt-8 border-t border-outline/10">
-              <p className="font-inter text-[11px] md:text-[12px] text-on-surface-variant/60 leading-relaxed text-left">
-                Registered office: Celestia AI (Enviroworld Consultancy), Building A1, Dubai Digital Park, Dubai Silicon Oasis, Dubai, United Arab Emirates, Dubai Trade License No. 66089
-              </p>
-            </div>
           </div>
 
           {/* Right Column Form */}

@@ -43,7 +43,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="relative min-h-screen bg-black text-white selection:bg-white selection:text-black overflow-x-clip w-full">
+      <body className="relative min-h-screen bg-black text-white selection:bg-white selection:text-black overflow-x-clip">
         <div className="texture-overlay" />
         {children}
       </body>

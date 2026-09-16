@@ -45,7 +45,7 @@ export default function Header({ hideUntilScroll = false }: HeaderProps) {
   return (
     <>
       <header 
-        className={`fixed top-4 left-0 right-0 w-full z-[110] transition-all duration-700 ease-out flex justify-center px-4 md:px-8
+        className={`fixed top-4 left-0 right-0 z-[110] transition-all duration-700 ease-out flex justify-center px-4 md:px-8
         ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-[150%] opacity-0 pointer-events-none"}
         `}
       >
