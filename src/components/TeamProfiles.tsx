@@ -7,7 +7,7 @@ export default function TeamProfiles() {
     {
       name: "Jimmy Joy",
       title: "Co-founder",
-      image: "/images/founders/JIMMY JOY.webp",
+      image: "/images/founders/jimmy_joy_v3.webp",
       linkedin: "https://www.linkedin.com/in/jimmyjoy88/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BY1qnEdTmR6mFfxSJJeusbw%3D%3D",
       bullets: [
         "Formerly <strong>Associate Partner</strong> at <strong>McKinsey & Company</strong>, Jimmy is a co-founder of Celestia AI and leads technology innovation.",
