@@ -39,24 +39,24 @@ export default function TeamProfiles() {
         </span>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
         {team.map((member, index) => {
           return (
-            <div key={index} className="flex flex-col sm:flex-row bg-surface-container rounded-2xl border border-outline/20 shadow-[0_4px_20px_rgba(0,0,0,0.2)] p-4 sm:p-5 gap-6">
+            <div key={index} className="flex flex-col gap-6">
               
-              {/* Left Image */}
-              <div className="w-full sm:w-[40%] aspect-[3/4] rounded-xl overflow-hidden shrink-0 relative bg-surface-container-low">
+              {/* Top Image */}
+              <div className="w-[85%] md:w-[75%] aspect-square rounded-2xl overflow-hidden relative bg-transparent">
                 <Image 
                   src={member.image} 
                   alt={member.name} 
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 85vw, 40vw"
+                  className="object-contain object-center"
                 />
               </div>
               
-              {/* Right Content */}
-              <div className="w-full sm:w-[60%] flex flex-col py-2 pr-2">
+              {/* Bottom Content */}
+              <div className="flex flex-col">
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="font-serif text-[26px] md:text-[28px] text-on-surface leading-none mb-1">
@@ -76,7 +76,7 @@ export default function TeamProfiles() {
                     {member.bullets.map((bullet, i) => (
                       <p 
                         key={i}
-                        className="font-inter text-[13px] text-on-surface-variant leading-[1.6]"
+                        className="font-inter text-[14px] text-on-surface-variant leading-[1.6]"
                         dangerouslySetInnerHTML={{ __html: bullet }}
                       />
                     ))}
