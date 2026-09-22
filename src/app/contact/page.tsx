@@ -11,22 +11,41 @@ export default function ContactPage() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMsg("");
     
-    // Construct the email body matching the form fields
-    const body = `Name: ${name}
-Email: ${email}
-Company: ${company || "Not provided"}
-
-Message:
-${message}`;
-
-    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=contact@celestia-ai.ai&su=${encodeURIComponent(
-      subject || "New Enquiry from Contact Form"
-    )}&body=${encodeURIComponent(body)}`;
-
-    window.open(gmailLink, '_blank');
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, company, subject, message }),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+      
+      setIsSuccess(true);
+      setName("");
+      setEmail("");
+      setCompany("");
+      setSubject("");
+      setMessage("");
+      
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (err: any) {
+      setErrorMsg(err.message || "An error occurred");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -175,11 +194,23 @@ ${message}`;
               {/* Button */}
               <button 
                 type="submit"
-                className="w-full mt-2 py-3.5 rounded-xl bg-[#E3C78B] hover:bg-[#d6b779] text-[#2B3544] font-medium font-inter transition-colors flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className="w-full mt-2 py-3.5 rounded-xl bg-[#E3C78B] hover:bg-[#d6b779] text-[#2B3544] font-medium font-inter transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Send Message
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                {isSubmitting ? "Sending..." : "Send Message"}
+                {!isSubmitting && <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>}
               </button>
+              
+              {isSuccess && (
+                <div className="mt-2 text-center text-green-500 font-inter text-sm font-medium bg-green-500/10 py-2 rounded-lg border border-green-500/20">
+                  Message sent successfully! We will get back to you soon.
+                </div>
+              )}
+              {errorMsg && (
+                <div className="mt-2 text-center text-red-400 font-inter text-sm font-medium bg-red-500/10 py-2 rounded-lg border border-red-500/20">
+                  {errorMsg}
+                </div>
+              )}
               
               <div className="flex items-center justify-center gap-1.5 mt-3 text-[#9CA3AF]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
