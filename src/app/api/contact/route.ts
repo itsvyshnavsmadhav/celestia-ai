@@ -1,13 +1,12 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
-
-const resend = new Resend(process.env.RESEND_API_KEY || 'dummy_key');
+import nodemailer from 'nodemailer';
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { name, email, company, subject, message } = body;
 
+    // Basic server-side validation
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: 'Name, email, and message are required' },
@@ -15,36 +14,69 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!process.env.RESEND_API_KEY) {
-        console.warn("RESEND_API_KEY is not set. Simulating email send:", body);
-        // Simulate a delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        return NextResponse.json({ success: true, simulated: true });
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: 'Invalid email address' },
+        { status: 400 }
+      );
     }
 
-    const { data, error } = await resend.emails.send({
-      from: 'Contact Form <onboarding@resend.dev>', // Change to your verified domain when going to production
-      to: ['contact@celestia-ai.ai'], // The email address to receive these messages
-      subject: subject || `New Enquiry from ${name}`,
-      text: `
-Name: ${name}
-Email: ${email}
-Company: ${company || 'Not provided'}
-Subject: ${subject || 'No subject'}
+    const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
 
-Message:
-${message}
-      `,
-    });
+    let transporter;
 
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 });
+    // If SMTP credentials are provided, use them
+    if (SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS) {
+      transporter = nodemailer.createTransport({
+        host: SMTP_HOST,
+        port: parseInt(SMTP_PORT, 10),
+        secure: parseInt(SMTP_PORT, 10) === 465,
+        auth: {
+          user: SMTP_USER,
+          pass: SMTP_PASS,
+        },
+      });
+    } else {
+      // Fallback for development/testing when no .env is setup
+      console.warn("⚠️ SMTP credentials missing. Using Ethereal Email for testing.");
+      const testAccount = await nodemailer.createTestAccount();
+      
+      transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false,
+        auth: {
+          user: testAccount.user,
+          pass: testAccount.pass,
+        },
+      });
     }
 
-    return NextResponse.json({ success: true, data });
+    const mailOptions = {
+      from: `"Contact Form" <${SMTP_USER || 'test@ethereal.email'}>`,
+      to: 'contact@celestia-ai.ai',
+      replyTo: email,
+      subject: subject ? `Contact Form: ${subject}` : `New Enquiry from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'Not provided'}\nSubject: ${subject || 'No subject'}\n\nMessage:\n${message}`,
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+    
+    // Log Ethereal URL if using test account
+    if (!SMTP_HOST) {
+      console.log("=========================================");
+      console.log("✉️  Email sent via Ethereal (Test Server)");
+      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+      console.log("=========================================");
+    }
+
+    return NextResponse.json({ success: true });
   } catch (error) {
+    console.error("Error sending email:", error);
     return NextResponse.json(
-      { error: 'Failed to send message' },
+      { error: 'Failed to send message. Please try again later.' },
       { status: 500 }
     );
   }

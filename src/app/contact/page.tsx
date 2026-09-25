@@ -21,15 +21,18 @@ export default function ContactPage() {
     setErrorMsg("");
     
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://formsubmit.co/ajax/contact@celestia-ai.ai', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify({ name, email, company, subject, message }),
       });
       
       const data = await response.json();
       
-      if (!response.ok) {
+      if (!response.ok || data.success === "false") {
         throw new Error(data.error || "Failed to send message");
       }
       
@@ -99,6 +102,12 @@ export default function ContactPage() {
                   <p className="font-inter text-[14px] text-on-surface-variant">No upfront commitment, we carry the risk, not you</p>
                 </div>
               </div>
+            </div>
+
+            <div className="flex flex-col gap-6 md:gap-8 mx-auto lg:mx-0 max-w-xs md:max-w-full text-left mt-8 md:mt-12">
+               <p className="font-inter text-[12px] md:text-[13px] text-on-surface-variant/80 leading-relaxed">
+                 Registered Office: Celestia AI (Enviroworld Consultancy), Building A1, Dubai Digital Park, Dubai Silicon Oasis, Dubai, United Arab Emirates, Dubai Trade License No. 66089
+               </p>
             </div>
 
           </div>

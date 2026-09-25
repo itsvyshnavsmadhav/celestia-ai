@@ -6,25 +6,25 @@ const pillars = [
   {
     number: "",
     title: "WE TACKLE HIGH IMPACT PROBLEMS OF B2B BUSINESSES..",
-    description: "We help our clients solve some of their most pressing business challenges across a broad range of topics ranging from Commercial Excellence to Procurement, Operational Excellence and Human Resources - in doing so, we focus on margin improvement.",
+    description: <>We help our clients solve their <strong className="font-bold">critical business challenges</strong> across Commercial Excellence, Procurement, Operational Excellence, and HR, with a primary focus on <strong className="font-bold">margin improvement</strong>.</>,
     image: "/images/methodology/business_problems.png"
   },
   {
     number: "",
     title: "BY BUILDING CUSTOM TOOLS..",
-    description: "We develop custom AI tools and AI agents from first principles, to match your specific workflows and design requirements. We do not force-fit existing solutions, instead we design your visual interface and underlying logic for your use-case.",
+    description: <>We build <strong className="font-bold">custom AI tools and agents</strong> from first principles, tailored to your <strong className="font-bold">workflows, requirements, and use cases</strong> - instead of force-fitting off-the-shelf solutions.</>,
     image: "/images/methodology/custom_ai_tools.png"
   },
   {
     number: "",
     title: "THAT WE JOINTLY DESIGN AND DEPLOY, TO CAPTURE IMPACT..",
-    description: "Our team owns your entire tool journey, starting from structuring your problem statement to designing the solution, deploying it within your existing architecture and demonstrating impact. We handhold your users to ensure full adoption and value capture.",
+    description: <>We own the <strong className="font-bold">end-to-end AI journey—from problem definition and solution design to deployment, user adoption, and value capture</strong>.</>,
     image: "/images/methodology/joint_deployment.png"
   },
   {
     number: "",
     title: "WHILE ENSURING RISK-FREE COMMERCIALS FOR YOU..",
-    description: "Our operating model is fully satisfaction-based. This means that we only invoice you after complete delivery of project and only if it solves your specific business problem. This ensures that you have a risk-free commercial arrangement.",
+    description: <>Our <strong className="font-bold">satisfaction-based model</strong> means you pay <strong className="font-bold">only after successful delivery</strong> and once the solution addresses your specific business problem - offering a <strong className="font-bold">risk-free engagement</strong>.</>,
     image: "/images/methodology/risk_free.png"
   },
 ];
@@ -32,7 +32,7 @@ const pillars = [
 type Pillar = {
   number: string;
   title: string;
-  description: string;
+  description: React.ReactNode;
   image: string;
 };
 
@@ -81,7 +81,7 @@ function MethodologyStep({ pillar }: { pillar: Pillar }) {
         <h2 className="reveal-text opacity-0 translate-y-8 font-hanken text-[24px] sm:text-[32px] md:text-[36px] lg:text-[40px] font-bold leading-[1.2] tracking-tight text-white drop-shadow-sm mb-6 w-full text-left">
           {pillar.title}
         </h2>
-        <p className="reveal-text opacity-0 translate-y-8 font-inter text-[16px] md:text-[18px] leading-relaxed text-white/80 w-full font-light text-left">
+        <p className="reveal-text opacity-0 translate-y-8 font-inter text-[16px] md:text-[18px] leading-relaxed text-white/80 w-full font-light text-left min-h-[80px] md:min-h-[100px]">
           {pillar.description}
         </p>
       </div>

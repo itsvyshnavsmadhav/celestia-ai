@@ -9,35 +9,35 @@ const projects = [
     title: "Dynamic Pricing Engine",
     date: "March 2026",
     description: "Helping the world’s largest airport infrastructure technology company on developing and deploying machine-learning based pricing transformation program to generate 3-5% EBITDA margin improvement.",
-    image: "/images/cases/case_1_watercolor_1790097749623.png"
+    image: "/images/cases/CASE 1.webp"
   },
   {
     client: "Healthcare Provider",
     title: "Integrated Planning Engine",
     date: "July 2026",
     description: "Building an operational excellence tool to optimize Sales and Operations planning (S&OP) for a USD 1 bn company, by streamlining commercial, operational and procurement decisions to mitigate planning volatility in an increasingly interconnected global supply chain.",
-    image: "/images/cases/case_2_watercolor_1790097768212.png"
+    image: "/images/cases/CASE 2.webp"
   },
   {
     client: "Energy Sector Leader",
     title: "RFP Automation Engine",
     date: "June 2026",
     description: "Building an RFP automation engine to help 200+ sales team members of a European B2B industrial player, to save 10-15% of their working time by agentic pre-filling of client RFP compliance documents that often run into thousands of line items per RFP, by basing it on knowledge bases connected to custom internal client data repositories and internal Product Information portals.",
-    image: "/images/cases/case_3_watercolor_1790097787591.png"
+    image: "/images/cases/CASE 3.webp"
   },
   {
     client: "Retail Giant",
     title: "Resource Optimization Engine",
     date: "April 2026",
     description: "Building a price engine for a UK-based sustainability consulting client by optimizing 30+ key variables like team skills, staffing availability, rate cards, topic expertise, client budget etc. to propose ideal team configurations that maximize client delivery impact and profitability.",
-    image: "/images/cases/case_4_watercolor_1790097805917.png"
+    image: "/images/cases/CASE 4.webp"
   },
   {
     client: "Global Bank",
     title: "Commercial Excellence Engine",
     date: "July 2026",
     description: "Developing a commercial excellence engine for an iconic PE-owned French kitchen appliances brand for their B2B business to improve profit margins.",
-    image: "/images/cases/case_5_watercolor_1790097825805.png"
+    image: "/images/cases/CASE 5.webp"
   }
 ];
 
@@ -136,7 +136,7 @@ type Project = {
 function ProjectCard({ project, index, expandedIndex, setExpandedIndex }: { project: Project, index: number, expandedIndex: number | null, setExpandedIndex: (i: number | null) => void }) {
   return (
     <div 
-      className="w-[85vw] md:w-[40vw] lg:w-[35vw] h-full relative shrink-0 group perspective-1000"
+      className="w-[68vw] md:w-[32vw] lg:w-[28vw] h-full relative shrink-0 group perspective-1000"
     >
       <div className="w-full h-full relative rounded-[2rem] overflow-hidden shadow-lg transition-transform duration-500 bg-black cursor-pointer" onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}>
         {/* Background Image */}
@@ -144,8 +144,8 @@ function ProjectCard({ project, index, expandedIndex, setExpandedIndex }: { proj
           src={project.image} 
           alt={project.title}
           fill
-          sizes="(max-width: 768px) 85vw, 40vw"
-          className={`object-cover transition-all duration-700 ${expandedIndex === index ? 'scale-110 opacity-30' : 'group-hover:scale-105 opacity-80'}`}
+          sizes="(max-width: 768px) 68vw, 32vw"
+          className={`object-cover brightness-125 contrast-105 transition-all duration-700 ${expandedIndex === index ? 'scale-110 opacity-30' : 'group-hover:scale-105 opacity-80'}`}
         />
         
         {/* Default state overlay (gradient at bottom) */}
