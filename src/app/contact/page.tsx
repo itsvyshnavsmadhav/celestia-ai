@@ -1,56 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function ContactPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [company, setCompany] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setErrorMsg("");
-    
-    try {
-      const response = await fetch('https://formsubmit.co/ajax/contact@celestia-ai.ai', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({ name, email, company, subject, message }),
-      });
-      
-      const data = await response.json();
-      
-      if (!response.ok || data.success === "false") {
-        throw new Error(data.error || "Failed to send message");
-      }
-      
-      setIsSuccess(true);
-      setName("");
-      setEmail("");
-      setCompany("");
-      setSubject("");
-      setMessage("");
-      
-      setTimeout(() => setIsSuccess(false), 5000);
-    } catch (err: any) {
-      setErrorMsg(err.message || "An error occurred");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <>
       <Header />
@@ -123,7 +77,15 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+            <form 
+              className="flex flex-col gap-5" 
+              action="https://formsubmit.co/contact@celestia-ai.ai" 
+              method="POST"
+            >
+              {/* FormSubmit Configuration */}
+              <input type="hidden" name="_subject" value="New Contact Form Submission" />
+              <input type="hidden" name="_captcha" value="false" />
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* Full Name */}
                 <div className="relative">
@@ -132,9 +94,8 @@ export default function ContactPage() {
                   </div>
                   <input 
                     type="text" 
+                    name="name"
                     placeholder="Full Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
                     className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-outline/20 bg-surface-container-lowest focus:bg-surface-container focus:outline-none focus:border-[#DFBE82] focus:ring-1 focus:ring-[#DFBE82] transition-colors placeholder:text-on-surface-variant text-[14px] font-inter text-on-surface"
                     required
                   />
@@ -147,9 +108,8 @@ export default function ContactPage() {
                   </div>
                   <input 
                     type="email" 
+                    name="email"
                     placeholder="Work Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-outline/20 bg-surface-container-lowest focus:bg-surface-container focus:outline-none focus:border-[#DFBE82] focus:ring-1 focus:ring-[#DFBE82] transition-colors placeholder:text-on-surface-variant text-[14px] font-inter text-on-surface"
                     required
                   />
@@ -163,9 +123,8 @@ export default function ContactPage() {
                 </div>
                 <input 
                   type="text" 
+                  name="company"
                   placeholder="Company Name"
-                  value={company}
-                  onChange={(e) => setCompany(e.target.value)}
                   className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-outline/20 bg-surface-container-lowest focus:bg-surface-container focus:outline-none focus:border-[#DFBE82] focus:ring-1 focus:ring-[#DFBE82] transition-colors placeholder:text-on-surface-variant text-[14px] font-inter text-on-surface"
                 />
               </div>
@@ -177,9 +136,8 @@ export default function ContactPage() {
                 </div>
                 <input 
                   type="text" 
+                  name="subject"
                   placeholder="Subject"
-                  value={subject}
-                  onChange={(e) => setSubject(e.target.value)}
                   className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-outline/20 bg-surface-container-lowest focus:bg-surface-container focus:outline-none focus:border-[#DFBE82] focus:ring-1 focus:ring-[#DFBE82] transition-colors placeholder:text-on-surface-variant text-[14px] font-inter text-on-surface"
                   required
                 />
@@ -191,10 +149,9 @@ export default function ContactPage() {
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                 </div>
                 <textarea 
+                  name="message"
                   rows={5}
                   placeholder="Tell us about your business problem"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
                   className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-outline/20 bg-surface-container-lowest focus:bg-surface-container focus:outline-none focus:border-[#DFBE82] focus:ring-1 focus:ring-[#DFBE82] transition-colors resize-y placeholder:text-on-surface-variant text-[14px] font-inter text-on-surface"
                   required
                 ></textarea>
@@ -203,23 +160,11 @@ export default function ContactPage() {
               {/* Button */}
               <button 
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full mt-2 py-3.5 rounded-xl bg-[#E3C78B] hover:bg-[#d6b779] text-[#2B3544] font-medium font-inter transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full mt-2 py-3.5 rounded-xl bg-[#E3C78B] hover:bg-[#d6b779] text-[#2B3544] font-medium font-inter transition-colors flex items-center justify-center gap-2"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                {!isSubmitting && <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>}
+                Send Message
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
               </button>
-              
-              {isSuccess && (
-                <div className="mt-2 text-center text-green-500 font-inter text-sm font-medium bg-green-500/10 py-2 rounded-lg border border-green-500/20">
-                  Message sent successfully! We will get back to you soon.
-                </div>
-              )}
-              {errorMsg && (
-                <div className="mt-2 text-center text-red-400 font-inter text-sm font-medium bg-red-500/10 py-2 rounded-lg border border-red-500/20">
-                  {errorMsg}
-                </div>
-              )}
               
               <div className="flex items-center justify-center gap-1.5 mt-3 text-[#9CA3AF]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
